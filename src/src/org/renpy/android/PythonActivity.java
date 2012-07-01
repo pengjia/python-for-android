@@ -215,12 +215,14 @@ public class PythonActivity extends Activity implements Runnable {
         System.loadLibrary("sdl_image");
         System.loadLibrary("sdl_ttf");
         System.loadLibrary("sdl_mixer");
-		System.loadLibrary("python2.7");
+        System.loadLibrary("python2.7");
         System.loadLibrary("application");
         System.loadLibrary("sdl_main");
 
-		System.load(getFilesDir() + "/lib/python2.7/lib-dynload/_io.so");
+        System.load(getFilesDir() + "/lib/python2.7/lib-dynload/_io.so");
         System.load(getFilesDir() + "/lib/python2.7/lib-dynload/unicodedata.so");
+        System.load(getFilesDir() + "/lib/python2.7/lib-dynload/_csv.so");
+        System.load(getFilesDir() + "/lib/python2.7/lib-dynload/_json.so");
 
         try {
             System.loadLibrary("sqlite3");
