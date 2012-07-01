@@ -57,7 +57,7 @@ encodings/hz*
 # unused python modules
 bsddb/*
 wsgiref/*
-sqlite3/*
+#sqlite3/*
 hotshot/*
 pydoc_data/*
 tty.pyo
@@ -81,11 +81,11 @@ lib-dynload/_lsprof.so
 lib-dynload/*audioop.so
 lib-dynload/mmap.so
 lib-dynload/_hotshot.so
-lib-dynload/_csv.so
+#lib-dynload/_csv.so
 lib-dynload/future_builtins.so
 lib-dynload/_lsprof.so
 lib-dynload/_heapq.so
-lib-dynload/_json.so
+#lib-dynload/_json.so
 lib-dynload/grp.so
 lib-dynload/resource.so
 lib-dynload/pyexpat.so

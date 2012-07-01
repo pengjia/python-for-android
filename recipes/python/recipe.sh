@@ -55,6 +55,13 @@ function build_python() {
 		export LDFLAGS="$LDFLAGS -L$BUILD_openssl/"
 	fi
 
+	# libsqlite3 activated ?
+	if [ "X$BUILD_libsqlite3" != "X" ]; then
+		debug "Activate flags for libsqlite3 / python"
+		export CFLAGS="$CFLAGS -I$BUILD_libsqlite3/"
+		export LDFLAGS="$LDFLAGS -L$BUILD_libsqlite3/.libs/"
+	fi
+
 	try ./configure --host=arm-eabi --prefix="$BUILD_PATH/python-install" --enable-shared
 	try $MAKE HOSTPYTHON=$BUILD_python/hostpython HOSTPGEN=$BUILD_python/hostpgen CROSS_COMPILE_TARGET=yes INSTSONAME=libpython2.7.so
 	cp HOSTPYTHON=$BUILD_python/hostpython python
