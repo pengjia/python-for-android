@@ -9,6 +9,6 @@ dist
 *.pyc
 testsuite
 
-setenv.sh
+setenv*
 .packages
 src/libs

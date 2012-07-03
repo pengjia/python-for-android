@@ -1,0 +1,11 @@
+--- boost_1_49_0/boost/uuid/name_generator.hpp	2011-05-30 02:35:00.000000000 +0200
++++ boost/boost/uuid/name_generator.hpp	2012-05-29 20:45:12.780364541 +0200
+@@ -42,7 +42,7 @@
+ 
+     uuid operator()(const wchar_t* name) {
+         reset();
+-        process_characters(name, std::wcslen(name));
++        process_characters(name, wcslen(name));
+         return sha_to_uuid();
+     }
+ 
