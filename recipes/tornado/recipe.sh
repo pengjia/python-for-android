@@ -2,13 +2,24 @@
 
 VERSION_tornado=2.3
 URL_tornado=https://github.com/downloads/facebook/tornado/tornado-$VERSION_tornado.tar.gz
-DEPS_tornado=(pycurl)
+DEPS_tornado=(python)
 MD5_tornado=810c3ecd425924fbf0aa1fa040f93ad1
 BUILD_tornado=$BUILD_PATH/tornado/$(get_directory $URL_tornado)
 RECIPE_tornado=$RECIPES_PATH/tornado
 
 function prebuild_tornado() {
-	true
+        cd $BUILD_tornado
+
+        # check marker in our source build
+        if [ -f .patched ]; then
+                # no patch needed
+                return
+        fi
+
+        try sed -i 's:flags |= socket.AI_ADDRCONFIG:pass#flags |= socket.AI_ADDRCONFIG:' $BUILD_tornado/tornado/netutil.py
+
+        # everything done, touch the marker !
+        touch .patched
 }
 
 function build_tornado() {
