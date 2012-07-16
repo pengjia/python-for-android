@@ -8,6 +8,7 @@
 
   <application android:label="@string/appName"
                android:icon="@drawable/icon"
+               android:name="org.renpy.android.PythonApplication"
                >
 
     <activity android:name="org.renpy.android.PythonActivity"
@@ -19,42 +20,26 @@
               android:windowSoftInputMode="stateAlwaysHidden"
             >
 
-      {% if args.launcher %}
-      <intent-filter>
-        <action android:name="org.renpy.LAUNCH" />
-        <category android:name="android.intent.category.DEFAULT" />
-        <data android:scheme="{{ url_scheme }}" />
-      </intent-filter>
-      {% else  %}
       <intent-filter>
         <action android:name="android.intent.action.MAIN" />
         <category android:name="android.intent.category.LAUNCHER" />
       </intent-filter>
-      {% endif %}
 
       {%if args.intent_filters %}
         {{ intent_filters }}
       {% endif %}
     </activity>
 
-    {% if args.launcher %}
-    <activity android:name="org.renpy.android.ProjectChooser"
-              android:label="@string/iconName"
-              >
-
-      <intent-filter>
-        <action android:name="android.intent.action.MAIN" />
-        <category android:name="android.intent.category.LAUNCHER" />
-      </intent-filter>
-
-    </activity>
-    {% endif %}
+    <service android:name="org.renpy.android.SDLSurfaceView"
+             android:process=":service"
+            />
 
   </application>
 
   <uses-sdk android:minSdkVersion="8" android:targetSdkVersion="8"/>
   <uses-permission android:name="android.permission.WAKE_LOCK" />
   <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+  <uses-permission android:name="android.permission.INTERNET" />
 
   {% for perm in args.permissions %}
   <uses-permission android:name="android.permission.{{ perm }}" />

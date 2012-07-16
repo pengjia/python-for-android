@@ -8,15 +8,16 @@
 package org.renpy.android;
 
 import android.app.Activity;
+import android.content.Context;
 import android.content.res.Resources;
 import android.view.View;
 
 public class ResourceManager {
 
-    private Activity act;
+    private Context act;
     private Resources res;
     
-    public ResourceManager(Activity activity) {
+    public ResourceManager(Context activity) {
         act = activity;
         res = act.getResources();
     }
@@ -34,6 +35,7 @@ public class ResourceManager {
         }
     }
 
+    /*
     public View inflateView(String name) {
         int id = getIdentifier(name, "layout");
         return act.getLayoutInflater().inflate(id, null);
@@ -43,5 +45,6 @@ public class ResourceManager {
         int id = getIdentifier(name, "id");
         return v.findViewById(id);
     }
+    */
     
 }

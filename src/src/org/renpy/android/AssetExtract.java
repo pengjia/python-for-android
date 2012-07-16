@@ -5,6 +5,7 @@ package org.renpy.android;
 import java.io.*;
 
 import android.app.Activity;
+import android.content.Context;
 import android.util.Log;
 
 import java.io.BufferedInputStream;
@@ -24,9 +25,9 @@ import org.xeustechnologies.jtar.*;
 class AssetExtract {
 
     private AssetManager mAssetManager = null;
-    private Activity mActivity = null;
+    private Context mActivity = null;
     
-    AssetExtract(Activity act) {
+    AssetExtract(Context act) {
         mActivity = act;
         mAssetManager = act.getAssets();
     }
