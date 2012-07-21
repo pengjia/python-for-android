@@ -97,7 +97,7 @@ public class PythonActivity extends Activity implements Runnable {
         startBtn.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
                 PythonActivity.this.startService(new Intent(
-                        PythonActivity.this, SDLSurfaceView.class));
+                        PythonActivity.this, PythonService.class));
             }
         });
 //        stopBtn.setOnClickListener(new View.OnClickListener() {

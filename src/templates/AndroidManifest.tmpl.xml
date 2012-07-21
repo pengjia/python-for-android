@@ -30,9 +30,15 @@
       {% endif %}
     </activity>
 
-    <service android:name="org.renpy.android.SDLSurfaceView"
+    <service android:name="org.renpy.android.PythonService"
              android:process=":service"
             />
+    <receiver android:name="org.renpy.android.PythonBootReceiver"
+              >
+      <intent-filter>
+        <action android:name="android.intent.action.BOOT_COMPLETED"/>
+       </intent-filter>
+    </receiver>
 
   </application>
 
@@ -40,6 +46,8 @@
   <uses-permission android:name="android.permission.WAKE_LOCK" />
   <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
   <uses-permission android:name="android.permission.INTERNET" />
+  <uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED"/>
+
 
   {% for perm in args.permissions %}
   <uses-permission android:name="android.permission.{{ perm }}" />

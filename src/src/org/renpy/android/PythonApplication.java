@@ -27,7 +27,8 @@ public class PythonApplication extends Application {
     public void onCreate() {
         super.onCreate();
         resourceManager = new ResourceManager(this);
-        externalStorage = new File(Environment.getExternalStorageDirectory(), getPackageName());
+        //externalStorage = new File(Environment.getExternalStorageDirectory(), getPackageName());
+        externalStorage = new File(getFilesDir(), "main");
 
         unpackData("private", getFilesDir());
         unpackData("public", externalStorage);
