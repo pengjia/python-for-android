@@ -102,6 +102,9 @@ function push_arm() {
 	if [ "X${ANDROIDNDKVER:0:2}" == "Xr7" ] || [ "X$ANDROIDNDKVER" == "Xr8" ]; then
 		export TOOLCHAIN_PREFIX=arm-linux-androideabi
 		export TOOLCHAIN_VERSION=4.4.3
+	elif [ "X$ANDROIDNDKVER" == "Xr8b" ]; then
+		export TOOLCHAIN_PREFIX=arm-linux-androideabi
+		export TOOLCHAIN_VERSION=4.6
 	elif [ "X$ANDROIDNDKVER" == "Xr5b" ]; then
 		export TOOLCHAIN_PREFIX=arm-eabi
 		export TOOLCHAIN_VERSION=4.4.0

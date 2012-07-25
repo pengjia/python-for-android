@@ -26,6 +26,10 @@ public class PythonApplication extends Application {
     @Override
     public void onCreate() {
         super.onCreate();
+
+        Hardware.context = this;
+        Action.context = this;
+
         resourceManager = new ResourceManager(this);
         //externalStorage = new File(Environment.getExternalStorageDirectory(), getPackageName());
         externalStorage = new File(getFilesDir(), "main");

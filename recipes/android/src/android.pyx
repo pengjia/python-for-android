@@ -219,6 +219,15 @@ def action_send(mimetype, filename=None, subject=None, text=None,
     android_action_send(j_mimetype, j_filename, j_subject, j_text,
             j_chooser_title)
 
+# Action broadcast
+cdef extern void android_action_broadcast(char*, char*)
+def action_broadcast(name, text=None,):
+    cdef char *j_name = <bytes>name
+    cdef char *j_text = NULL
+    if text is not None:
+        j_text = <bytes>text
+    android_action_broadcast(j_name, j_text)
+
 cdef extern int android_checkstop()
 cdef extern void android_ackstop()
 

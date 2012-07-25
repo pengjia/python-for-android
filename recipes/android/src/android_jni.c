@@ -267,6 +267,8 @@ void android_action_send(char *mimeType, char *filename, char *subject, char *te
         aassert(mid);
     }
 
+    PUSH_FRAME;
+
 	jstring j_mimeType = (*env)->NewStringUTF(env, mimeType);
 	jstring j_filename = NULL;
 	jstring j_subject = NULL;
@@ -285,6 +287,36 @@ void android_action_send(char *mimeType, char *filename, char *subject, char *te
         env, cls, mid,
 		j_mimeType, j_filename, j_subject, j_text,
 		j_chooser_title);
+
+    POP_FRAME;
+}
+
+void android_action_broadcast(char *name, char *text) {
+    static JNIEnv *env = NULL;
+    static jclass *cls = NULL;
+    static jmethodID mid = NULL;
+
+    if (env == NULL) {
+        env = SDL_ANDROID_GetJNIEnv();
+        aassert(env);
+        cls = (*env)->FindClass(env, "org/renpy/android/Action");
+        aassert(cls);
+        mid = (*env)->GetStaticMethodID(env, cls, "broadcast", "(Ljava/lang/String;Ljava/lang/String;)V");
+        aassert(mid);
+    }
+
+    PUSH_FRAME;
+
+    jstring j_name = (*env)->NewStringUTF(env, name);
+    jstring j_text = NULL;
+    if ( text != NULL )
+        j_text = (*env)->NewStringUTF(env, text);
+
+    (*env)->CallStaticVoidMethod(
+        env, cls, mid, 
+        j_name, j_text);
+
+    POP_FRAME;
 }
 
 void android_open_url(char *url) {
