@@ -162,6 +162,7 @@ def make_tar(tfn, source_dirs, ignore_path=[]):
     # get the files and relpath file of all the directory we asked for
     files = []
     for sd in source_dirs:
+        sd = realpath(sd)
         compile_dir(sd)
         files += [(x, relpath(realpath(x), sd)) for x in listfiles(sd) if select(x)]
 
@@ -324,6 +325,8 @@ tools directory of the Android SDK.
     ap.add_argument('--blacklist', dest='blacklist',
         default=join(curdir, 'blacklist.txt'),
         help='Use a blacklist file to match unwanted file in the final APK')
+    ap.add_argument('--sdk', dest='sdk_version', default='8', help='Android SDK version to use. Default to 8')
+    ap.add_argument('--minsdk', dest='min_sdk_version', default='8', help='Minimum Android SDK version to use. Default to 8')
     ap.add_argument('command', nargs='*', help='The command to pass to ant (debug, release, installd, installr)')
 
     args = ap.parse_args()
