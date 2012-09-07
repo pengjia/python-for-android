@@ -1,8 +1,8 @@
 #!/bin/bash
 
 VERSION_pyjnius=
-URL_pyjnius=https://github.com/kivy/pyjnius/zipball/master/pyjnius-master.zip
-DEPS_pyjnius=(pygame)
+URL_pyjnius=https://github.com/kivy/pyjnius/zipball/master/pyjnius-1.0.3.zip
+DEPS_pyjnius=
 MD5_pyjnius=
 BUILD_pyjnius=$BUILD_PATH/pyjnius/$(get_directory $URL_pyjnius)
 RECIPE_pyjnius=$RECIPES_PATH/pyjnius
