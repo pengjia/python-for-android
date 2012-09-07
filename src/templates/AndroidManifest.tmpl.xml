@@ -24,15 +24,14 @@
         <action android:name="android.intent.action.MAIN" />
         <category android:name="android.intent.category.LAUNCHER" />
       </intent-filter>
-
-      {%if args.intent_filters %}
-        {{ intent_filters }}
-      {% endif %}
     </activity>
 
     <service android:name="org.renpy.android.PythonService"
-             android:process=":service"
-            />
+      android:process=":service">
+      {%if args.intent_filters %}
+        {{ intent_filters }}
+      {% endif %}
+    </service>
     <receiver android:name="org.renpy.android.PythonBootReceiver"
               >
       <intent-filter>
