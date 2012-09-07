@@ -1,9 +1,9 @@
 #!/bin/bash
 
-VERSION_tornado=2.3
-URL_tornado=https://github.com/downloads/facebook/tornado/tornado-$VERSION_tornado.tar.gz
+VERSION_tornado=2.4
+URL_tornado=https://github.com/downloads/facebook/tornado/tornado-$VERSION.tar.gz
 DEPS_tornado=(python)
-MD5_tornado=810c3ecd425924fbf0aa1fa040f93ad1
+MD5_tornado=c738af97c31dd70f41f6726cf0968941
 BUILD_tornado=$BUILD_PATH/tornado/$(get_directory $URL_tornado)
 RECIPE_tornado=$RECIPES_PATH/tornado
 

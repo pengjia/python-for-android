@@ -41,6 +41,8 @@ public class PythonActivity extends Activity implements Runnable {
     // The audio thread for streaming audio...
     private static AudioThread mAudioThread = null;
 
+    public static PythonActivity mActivity = null;
+
     // Did we launch our thread?
     private boolean mLaunchedThread = false;
 
@@ -60,6 +62,7 @@ public class PythonActivity extends Activity implements Runnable {
 
         Hardware.context = this;
         Action.context = this;
+        this.mActivity = this;
 
         getWindowManager().getDefaultDisplay().getMetrics(Hardware.metrics);
 
