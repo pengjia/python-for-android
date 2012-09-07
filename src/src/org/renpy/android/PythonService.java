@@ -19,6 +19,8 @@ public class PythonService extends Service {
     @Override
     public void onCreate() {
         super.onCreate();
+        
+        Utils.context = this;
         SDLSurfaceView core = new SDLSurfaceView(this);
         new Thread(core).start();
     }
