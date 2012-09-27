@@ -32,12 +32,12 @@
         {{ intent_filters }}
       {% endif %}
     </service>
-    <!--receiver android:name="org.renpy.android.PythonBootReceiver"
+    <receiver android:name="org.renpy.android.PythonBootReceiver"
               >
       <intent-filter>
         <action android:name="android.intent.action.BOOT_COMPLETED"/>
        </intent-filter>
-    </receiver-->
+    </receiver>
 
   </application>
 
