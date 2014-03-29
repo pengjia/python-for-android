@@ -1,0 +1,54 @@
+diff -urN libtorrent-rasterbar-0.16.1-orig/include/libtorrent/config.hpp libtorrent-rasterbar-0.16.1/include/libtorrent/config.hpp
+--- libtorrent-rasterbar-0.16.1-orig/include/libtorrent/config.hpp	2012-04-29 00:23:43.000000000 +0800
++++ libtorrent-rasterbar-0.16.1/include/libtorrent/config.hpp	2012-07-02 23:04:05.000000000 +0800
+@@ -510,5 +510,18 @@
+ #endif // BOOST_NO_EXCEPTIONS
+ 
+ 
++#ifdef TORRENT_USE_ICONV
++#undef TORRENT_USE_ICONV
++#endif
++#define TORRENT_USE_ICONV 0
++#ifdef TORRENT_USE_IFADDRS
++#undef TORRENT_USE_IFADDRS
++#endif
++#define TORRENT_USE_IFADDRS 0
++#ifdef TORRENT_HAS_FALLOCATE
++#undef TORRENT_HAS_FALLOCATE
++#endif
++#define TORRENT_HAS_FALLOCATE 0
++
+ #endif // TORRENT_CONFIG_HPP_INCLUDED
+ 
+diff -urN libtorrent-rasterbar-0.16.1-orig/src/file.cpp libtorrent-rasterbar-0.16.1/src/file.cpp
+--- libtorrent-rasterbar-0.16.1-orig/src/file.cpp	2012-05-29 03:54:43.000000000 +0800
++++ libtorrent-rasterbar-0.16.1/src/file.cpp	2012-07-02 23:05:21.000000000 +0800
+@@ -68,7 +68,7 @@
+ #include <fcntl.h> // for F_LOG2PHYS
+ #include <sys/stat.h>
+ #include <sys/types.h>
+-#include <sys/statvfs.h>
++#include <sys/statfs.h>
+ #include <errno.h>
+ #include <dirent.h>
+ 
+@@ -112,7 +112,7 @@
+ // related functions support 64-bit offsets.
+ // this test makes sure lseek() returns a type
+ // at least 64 bits wide
+-BOOST_STATIC_ASSERT(sizeof(lseek(0, 0, 0)) >= 8);
++//BOOST_STATIC_ASSERT(sizeof(lseek(0, 0, 0)) >= 8);
+ 
+ #endif // posix part
+ 
+@@ -1038,8 +1038,8 @@
+ #if defined TORRENT_LINUX
+ 		if (m_sector_size == 0)
+ 		{
+-			struct statvfs fs;
+-			if (fstatvfs(m_fd, &fs) == 0)
++			struct statfs fs;
++			if (fstatfs(m_fd, &fs) == 0)
+ 				m_sector_size = fs.f_bsize;
+ 			else
+ 				m_sector_size = 4096;

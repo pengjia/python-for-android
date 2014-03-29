@@ -38,6 +38,8 @@ function prebuild_python() {
 		try patch -p1 < $RECIPE_python/patches/fix-distutils-darwin.patch
 	fi
 
+        try sed -i 's:HAVE_DECL_ISFINITE \$ac_have_decl:HAVE_DECL_ISFINITE 0:' $BUILD_python/configure
+
 	# everything done, touch the marker !
 	touch .patched
 }

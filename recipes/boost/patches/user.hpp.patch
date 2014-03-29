@@ -1,0 +1,14 @@
+--- boost_1_48_0-old/boost/config/user.hpp	2004-01-10 07:10:00.000000000 -0500
++++ boost_1_48_0/boost/config/user.hpp	2012-02-22 18:01:00.000000000 -0500
+@@ -13,6 +13,11 @@
+ //  configuration policy:
+ //
+
++// Android defines
++#define __arm__ 1
++#define _REENTRANT 1
++#define _GLIBCXX__PTHREADS 1
++
+ // define this to locate a compiler config file:
+ // #define BOOST_COMPILER_CONFIG <myheader>
+

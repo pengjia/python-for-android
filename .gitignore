@@ -9,7 +9,6 @@ src/libs/armeabi
 dist
 *.pyc
 testsuite
-.packages
 
 #ECLIPSE + PYDEV
 .project
@@ -18,3 +17,7 @@ testsuite
 .deps
 
 .optional-deps
+
+setenv*
+.packages
+src/libs

@@ -1,0 +1,30 @@
+--- boost_1_47_0/boostcpp.jam.orig	2012-02-23 08:59:24.484891422 -0800
++++ boost_1_47_0/boostcpp.jam	2012-02-23 09:12:28.964910700 -0800
+@@ -139,8 +139,15 @@ rule tag ( name : type ? : property-set
+                 <base> 
+                 -$(BUILD_ID)
+                 : $(name) : $(type) : $(property-set) ] ;
+         }
++        else if $(layout) = unversioned
++        {
++            result = [ common.format-name
++                <base> 
++                -$(BUILD_ID)
++                : $(name) : $(type) : $(property-set) ] ;
++        }
+         else
+         {
+             ECHO "error: invalid layout '$(layout:E=)'" ;
+             EXIT ;               
+@@ -154,9 +161,10 @@ rule tag ( name : type ? : property-set
+         # suffixes either. Pgi compilers can not accept library with version
+         # suffix.
+         if $(type) = SHARED_LIB &&
+           ( ! ( [ $(property-set).get <target-os> ] in windows cygwin darwin aix ) &&
+-            ! ( [ $(property-set).get <toolset> ] in pgi ) )
++            ! ( [ $(property-set).get <toolset> ] in pgi ) &&
++	    ! ( $(layout) = unversioned ) )
+         {
+             result = $(result).$(BOOST_VERSION)  ;
+         }
+ 
